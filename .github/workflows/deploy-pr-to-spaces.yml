@@ -2,22 +2,22 @@ name: Upload demo
 
 on:
   workflow_call:
-  inputs:
-    wheel_name:
-      type: string
-      required: true
-    pr_number:
-      type: string
-      required: true
-    sha:
-      type: string
-      required: true
-    run_id:
-      type: string
-      required: true
-    gradio_version:
-      type: string
-      required: true
+    inputs:
+      wheel_name:
+        type: string
+        required: true
+      pr_number:
+        type: string
+        required: true
+      sha:
+        type: string
+        required: true
+      run_id:
+        type: string
+        required: true
+      gradio_version:
+        type: string
+        required: true
 
 jobs:
   deploy-current-pr:
