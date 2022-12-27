@@ -33,7 +33,7 @@ jobs:
     - name: Install pip
       run: python -m pip install build requests
     - name: 'Download wheel'
-      uses: actions/github-script@v3.1.0
+      uses: actions/github-script@v6
       with:
         script: |
           let allArtifacts = await github.rest.actions.listWorkflowRunArtifacts({
@@ -62,7 +62,7 @@ jobs:
     - name: Install Hub Client Library
       run: pip install huggingface-hub
     - name: 'Download all_demos'
-      uses: actions/github-script@v3.1.0
+      uses: actions/github-script@v6
       with:
         script: |
           let allArtifacts = await github.rest.actions.listWorkflowRunArtifacts({
