@@ -36,21 +36,21 @@ jobs:
       uses: actions/github-script@v3.1.0
       with:
         script: |
-          var artifacts = await github.actions.listWorkflowRunArtifacts({
+          let allArtifacts = await github.rest.actions.listWorkflowRunArtifacts({
               owner: 'gradio-app',
               repo: 'gradio',
               run_id: ${{ inputs.run_id }},
           });
-          var matchArtifact = artifacts.data.artifacts.filter((artifact) => {
+          let matchArtifact = allArtifacts.data.artifacts.filter((artifact) => {
             return artifact.name == "${{ inputs.wheel_name }}"
           })[0];
-          var download = await github.actions.downloadArtifact({
+          let download = await github.rest.actions.downloadArtifact({
               owner: 'gradio-app',
               repo: 'gradio',
               artifact_id: matchArtifact.id,
               archive_format: 'zip',
           });
-          var fs = require('fs');
+          let fs = require('fs');
           fs.writeFileSync('${{github.workspace}}/${{ inputs.wheel_name }}.zip', Buffer.from(download.data));
     - run: unzip ${{ inputs.wheel_name }}.zip
     - name: Upload wheel
@@ -65,21 +65,21 @@ jobs:
       uses: actions/github-script@v3.1.0
       with:
         script: |
-          var artifacts = await github.actions.listWorkflowRunArtifacts({
+          let allArtifacts = await github.rest.actions.listWorkflowRunArtifacts({
               owner: 'gradio-app',
               repo: 'gradio',
               run_id: ${{ inputs.run_id }},
           });
-          var matchArtifact = artifacts.data.artifacts.filter((artifact) => {
+          let matchArtifact = allArtifacts.data.artifacts.filter((artifact) => {
             return artifact.name == "all_demos"
           })[0];
-          var download = await github.actions.downloadArtifact({
+          let download = await github.rest.actions.downloadArtifact({
               owner: 'gradio-app',
               repo: 'gradio',
               artifact_id: matchArtifact.id,
               archive_format: 'zip',
           });
-          var fs = require('fs');
+          let fs = require('fs');
           fs.writeFileSync('${{github.workspace}}/all_demos.zip', Buffer.from(download.data));
     - run: unzip all_demos.zip
     - name: Upload demo to spaces
