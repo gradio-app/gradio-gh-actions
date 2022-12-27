@@ -37,16 +37,16 @@ jobs:
       with:
         script: |
           var artifacts = await github.actions.listWorkflowRunArtifacts({
-              owner: gradio-app,
-              repo: gradio,
+              owner: 'gradio-app',
+              repo: 'gradio',
               run_id: ${{ inputs.run_id }},
           });
           var matchArtifact = artifacts.data.artifacts.filter((artifact) => {
             return artifact.name == "${{ inputs.wheel_name }}"
           })[0];
           var download = await github.actions.downloadArtifact({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
+              owner: 'gradio-app',
+              repo: 'gradio',
               artifact_id: matchArtifact.id,
               archive_format: 'zip',
           });
@@ -66,16 +66,16 @@ jobs:
       with:
         script: |
           var artifacts = await github.actions.listWorkflowRunArtifacts({
-              owner: gradio-app,
-              repo: gradio,
+              owner: 'gradio-app',
+              repo: 'gradio',
               run_id: ${{ inputs.run_id }},
           });
           var matchArtifact = artifacts.data.artifacts.filter((artifact) => {
             return artifact.name == "all_demos"
           })[0];
           var download = await github.actions.downloadArtifact({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
+              owner: 'gradio-app',
+              repo: 'gradio',
               artifact_id: matchArtifact.id,
               archive_format: 'zip',
           });
