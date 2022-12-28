@@ -29,7 +29,7 @@ def download_artifact(
     artifact_id = next((artifact['id'] for artifact in artifacts['artifacts'] if artifact['name'] == artifact_name), None)
 
     if not artifact_id:
-        raise ValueError(f"Cannot find {artifact_name}! {artifacts}")
+        raise ValueError(f"Cannot find {artifact_name}! {artifacts} {owner} {repo} {run_id}")
 
     download = requests.get(
         ARTIFACT_DOWNLOAD_ENDPOINT.format(artifact_id=artifact_id),
