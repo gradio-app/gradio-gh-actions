@@ -35,7 +35,6 @@ def download_artifact(
         ARTIFACT_DOWNLOAD_ENDPOINT.format(artifact_id=artifact_id),
         headers=headers
     )
-    breakpoint()
     with open(f"{artifact_name}.zip", "wb") as f:
         f.write(download.content)
 

@@ -33,7 +33,7 @@ jobs:
     - name: Install pip
       run: python -m pip install build requests
     - name: 'Download wheel'
-      run: python scripts/download_artifacts.py ${{ inputs.run_id }} ${{ inputs.wheel_name }}  ${{ secrets.COMMENT_TOKEN }}
+      run: python scripts/download_artifacts.py ${{ inputs.run_id }} ${{ inputs.wheel_name }} ${{ secrets.COMMENT_TOKEN }}
     - run: unzip ${{ inputs.wheel_name }}.zip
     - name: Upload wheel
       run: |
